@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/products_menu_item"
+        android:enabled="true"
+        android:icon="@drawable/ic_work_black_24dp"
+        android:title="@string/products_menu_item"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/transfers_menu_item"
+        android:enabled="true"
+        android:icon="@drawable/ic_attach_money_black_24dp"
+        android:title="@string/transfers_menu_item"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/payments_menu_item"
+        android:enabled="true"
+        android:icon="@drawable/ic_payment_black_24dp"
+        android:title="@string/payments_menu_item"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/profile_menu_item"
+        android:enabled="true"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:title="@string/account_menu_item"
+        app:showAsAction="ifRoom" />
+</menu>

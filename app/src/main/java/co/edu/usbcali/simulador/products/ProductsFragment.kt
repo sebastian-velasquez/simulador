@@ -60,7 +60,6 @@ class ProductsFragment : Fragment(), AdapterView.OnItemClickListener {
         fab = view!!.findViewById(R.id.floatingButtonProducts)
         fab!!.setOnClickListener({
             if (loggedUser != null){
-            Toast.makeText(context, loggedUser!!.id.toString(),Toast.LENGTH_SHORT).show()
                 val bundle = Bundle()
                 bundle.putParcelable("loggedUser", loggedUser)
                 val createProductFragment = CreateProductFragment.Companion.newInstance(loggedUser!!)
@@ -109,7 +108,7 @@ class ProductsFragment : Fragment(), AdapterView.OnItemClickListener {
     }
 
     override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Toast.makeText(context, listItems!![p2].id.toString(), Toast.LENGTH_SHORT).show()
     }
 
     companion object {
@@ -142,8 +141,9 @@ class ProductsFragment : Fragment(), AdapterView.OnItemClickListener {
             val tv1 = view!!.findViewById<TextView>(android.R.id.text1)
             val tv2 = view!!.findViewById<TextView>(android.R.id.text2)
             val account = getItem(position)
-            tv1.text = account.id.toString()
-            tv2.text = account.netBalance.toString()
+            val accountType = if (account.type == 1) "Ahorros" else "Corriente"
+            tv1.text = "Cuenta " + accountType + " #" + account.id.toString()
+            tv2.text = "Saldo neto: $" + account.netBalance.toString()
             return view
         }
     }

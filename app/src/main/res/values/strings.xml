@@ -10,8 +10,7 @@
     <string name="login_button">Ingresar</string>
     <string name="password_change_button">Aceptar</string>
     <string name="products_menu_item">Productos</string>
-    <string name="transfers_menu_item">Transferencias</string>
-    <string name="payments_menu_item">Pagos</string>
+    <string name="transfers_menu_item">Movimientos</string>
     <string name="account_menu_item">Cuenta</string>
     <string name="create_account_title">Agrega una cuenta</string>
 

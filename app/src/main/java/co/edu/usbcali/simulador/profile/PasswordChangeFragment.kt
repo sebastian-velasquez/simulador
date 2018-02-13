@@ -52,7 +52,7 @@ class PasswordChangeFragment : Fragment() {
         currentPasswordEditText = view!!.findViewById(R.id.editTextOldPassword)
         newPasswordEditText = view!!.findViewById(R.id.editTextNewPassword)
         passwordConfirmationEditText = view!!.findViewById(R.id.editTextPasswordConfirmation)
-        changePasswordButton = view!!.findViewById(R.id.buttonChangePassword)
+        changePasswordButton = view!!.findViewById(R.id.buttonCreateProduct)
         changePasswordButton!!.setOnClickListener {
             var currentPassword = currentPasswordEditText!!.text.toString()
             var newPassword = newPasswordEditText!!.text.toString()

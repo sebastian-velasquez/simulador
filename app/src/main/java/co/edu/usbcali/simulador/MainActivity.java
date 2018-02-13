@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     FragmentTransaction transaction;
     ProductsFragment productsFragment;
     TransfersFragment transfersFragment;
-    PaymentsFragment paymentsFragment;
     ProfileFragment profileFragment;
     BottomNavigationView bottomNavigationView;
 
@@ -51,10 +50,6 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.transfers_menu_item:
                             transfersFragment = new TransfersFragment();
                             transaction.replace(R.id.fragmentContainer, transfersFragment).commit();
-                            return true;
-                        case R.id.payments_menu_item:
-                            paymentsFragment = new PaymentsFragment();
-                            transaction.replace(R.id.fragmentContainer, paymentsFragment).commit();
                             return true;
                         case R.id.profile_menu_item:
                             profileFragment = ProfileFragment.Companion.newInstance(loggedUser);

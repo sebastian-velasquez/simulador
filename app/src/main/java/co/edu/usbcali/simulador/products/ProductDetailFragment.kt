@@ -7,67 +7,39 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RadioButton
-import android.widget.Toast
+
 import co.edu.usbcali.simulador.R
-import co.edu.usbcali.simulador.database.AppDatabase
 import co.edu.usbcali.simulador.database.account.Account
-import co.edu.usbcali.simulador.database.user.User
 
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [CreateProductFragment.OnFragmentInteractionListener] interface
+ * [ProductDetailFragment.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [CreateProductFragment.newInstance] factory method to
+ * Use the [ProductDetailFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class CreateProductFragment : Fragment() {
+class ProductDetailFragment : Fragment() {
 
-    private var DB: AppDatabase? = null
-    private var loggedUser: User? = null
-    private var buttonCreateProduct : Button? = null
-    private var radioButtonAccountType1: RadioButton? = null
-    private var radioButtonAccountType2: RadioButton? = null
-    private var netBalanceEditText: EditText? = null
-
+    private var account: Account? = null
 
     private var mListener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DB = AppDatabase.getAppDatabase(context)
         if (arguments != null) {
-            this.loggedUser = arguments.getParcelable("loggedUser")
+            this.account = arguments.getParcelable("account")
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_create_product, container, false)
+        return inflater!!.inflate(R.layout.fragment_product_detail, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        buttonCreateProduct = view!!.findViewById(R.id.buttonCreateProduct)
-        radioButtonAccountType1 = view!!.findViewById(R.id.radioButtonAccountType1)
-        radioButtonAccountType2 = view!!.findViewById(R.id.radioButtonAccountType2)
-        netBalanceEditText = view!!.findViewById(R.id.editTextNetBalance)
-        buttonCreateProduct!!.setOnClickListener({
-            val accountDao = DB!!.accountDao()
-            var netBalance = netBalanceEditText!!.text.toString().toDouble()
-            var accountType = if (radioButtonAccountType1!!.isChecked) 1 else 2
-            var newAccount = Account()
-            newAccount.netBalance = netBalance
-            newAccount.type = accountType
-            newAccount.userId = loggedUser!!.id
-            accountDao.insert(newAccount)
-            Toast.makeText(context, "Cuenta creada correctamente", Toast.LENGTH_SHORT).show()
-            fragmentManager.popBackStackImmediate()
-        })
 
     }
 
@@ -83,7 +55,7 @@ class CreateProductFragment : Fragment() {
         if (context is OnFragmentInteractionListener) {
             mListener = context
         } else {
-//            throw RuntimeException(context!!.toString() + " must implement OnFragmentInteractionListener")
+            //throw RuntimeException(context!!.toString() + " must implement OnFragmentInteractionListener")
         }
     }
 
@@ -107,20 +79,19 @@ class CreateProductFragment : Fragment() {
     }
 
     companion object {
-
-        private var loggedUser = null
+        private val account = null
 
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @param loggedUser Parameter 1.
-         * @return A new instance of fragment ProfileFragment.
+         * @param account Parameter 1.
+         * @return A new instance of fragment ProductDetailFragment.
          */
-        fun newInstance(loggedUser: User): CreateProductFragment {
-            val fragment = CreateProductFragment()
+        fun newInstance(account: Account): ProductDetailFragment {
+            val fragment = ProductDetailFragment()
             val args = Bundle()
-            args.putParcelable("loggedUser", loggedUser)
+            args.putParcelable("account", account)
             fragment.arguments = args
             return fragment
         }

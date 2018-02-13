@@ -14,12 +14,6 @@
         android:title="@string/transfers_menu_item"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/payments_menu_item"
-        android:enabled="true"
-        android:icon="@drawable/ic_payment_black_24dp"
-        android:title="@string/payments_menu_item"
-        app:showAsAction="ifRoom" />
-    <item
         android:id="@+id/profile_menu_item"
         android:enabled="true"
         android:icon="@drawable/ic_account_circle_black_24dp"

@@ -32,6 +32,7 @@ class ProductsFragment : Fragment(), AdapterView.OnItemClickListener {
     private var listView: ListView? = null
     private var listItems: List<Account>? = null
     private var fab: FloatingActionButton? = null
+
     private var mListener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,9 +57,19 @@ class ProductsFragment : Fragment(), AdapterView.OnItemClickListener {
         this.listView = view!!.findViewById<ListView>(R.id.listViewProducts)
         this.listView!!.adapter = arrayAdapter
         listView!!.onItemClickListener = this
-        this.fab = view!!.findViewById(R.id.floatingButtonProducts)
+        fab = view!!.findViewById(R.id.floatingButtonProducts)
         fab!!.setOnClickListener({
-            Toast.makeText(context, "Click", Toast.LENGTH_SHORT).show()
+            if (loggedUser != null){
+            Toast.makeText(context, loggedUser!!.id.toString(),Toast.LENGTH_SHORT).show()
+                val bundle = Bundle()
+                bundle.putParcelable("loggedUser", loggedUser)
+                val createProductFragment = CreateProductFragment.Companion.newInstance(loggedUser!!)
+                val fragmentManager = activity.supportFragmentManager
+                val transaction = fragmentManager.beginTransaction()
+                transaction.replace(R.id.fragmentContainer, createProductFragment)
+                transaction.addToBackStack(null)
+                transaction.commit()
+            }
         })
     }
 

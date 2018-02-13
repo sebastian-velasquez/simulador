@@ -13,8 +13,11 @@
     <string name="transfers_menu_item">Transferencias</string>
     <string name="payments_menu_item">Pagos</string>
     <string name="account_menu_item">Cuenta</string>
+    <string name="create_account_title">Agrega una cuenta</string>
 
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="account_type">Tipo de cuenta</string>
+    <string name="account_type_1">Ahorros</string>
+    <string name="account_type_2">Corriente</string>
+    <string name="net_balance_hint">Balance neto</string>
 </resources>

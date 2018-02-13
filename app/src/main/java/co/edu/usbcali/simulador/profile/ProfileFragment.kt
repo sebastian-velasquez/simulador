@@ -27,7 +27,6 @@ import co.edu.usbcali.simulador.database.user.User
  */
 class ProfileFragment : Fragment(), AdapterView.OnItemClickListener {
 
-    // TODO: Rename and change types of parameters
     private var DB: AppDatabase? = null
     private var loggedUser: User? = null
 
@@ -117,8 +116,7 @@ class ProfileFragment : Fragment(), AdapterView.OnItemClickListener {
     }
 
     companion object {
-        // TODO: Rename parameter arguments, choose names that match
-        // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
         private var loggedUser = null
 
         /**
@@ -128,7 +126,6 @@ class ProfileFragment : Fragment(), AdapterView.OnItemClickListener {
          * @param loggedUser Parameter 1.
          * @return A new instance of fragment ProfileFragment.
          */
-        // TODO: Rename and change types and number of parameters
         fun newInstance(loggedUser: User): ProfileFragment {
             val fragment = ProfileFragment()
             val args = Bundle()
@@ -137,4 +134,4 @@ class ProfileFragment : Fragment(), AdapterView.OnItemClickListener {
             return fragment
         }
     }
-}// Required empty public constructor
+}

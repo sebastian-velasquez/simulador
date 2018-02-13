@@ -7,8 +7,11 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 
 import co.edu.usbcali.simulador.R
+import co.edu.usbcali.simulador.database.AppDatabase
+import co.edu.usbcali.simulador.database.user.User
 
 /**
  * A simple [Fragment] subclass.
@@ -20,17 +23,16 @@ import co.edu.usbcali.simulador.R
  */
 class CreateProductFragment : Fragment() {
 
-    // TODO: Rename and change types of parameters
-    private var mParam1: String? = null
-    private var mParam2: String? = null
+    private var DB: AppDatabase? = null
+    private var loggedUser: User? = null
 
     private var mListener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        DB = AppDatabase.getAppDatabase(context)
         if (arguments != null) {
-            mParam1 = arguments.getString(ARG_PARAM1)
-            mParam2 = arguments.getString(ARG_PARAM2)
+            this.loggedUser = arguments.getParcelable("loggedUser")
         }
     }
 
@@ -38,6 +40,11 @@ class CreateProductFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater!!.inflate(R.layout.fragment_create_product, container, false)
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Toast.makeText(this.context, "Creado", Toast.LENGTH_SHORT).show()
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -52,7 +59,7 @@ class CreateProductFragment : Fragment() {
         if (context is OnFragmentInteractionListener) {
             mListener = context
         } else {
-            throw RuntimeException(context!!.toString() + " must implement OnFragmentInteractionListener")
+//            throw RuntimeException(context!!.toString() + " must implement OnFragmentInteractionListener")
         }
     }
 
@@ -76,27 +83,22 @@ class CreateProductFragment : Fragment() {
     }
 
     companion object {
-        // TODO: Rename parameter arguments, choose names that match
-        // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-        private val ARG_PARAM1 = "param1"
-        private val ARG_PARAM2 = "param2"
+
+        private var loggedUser = null
 
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CreateProductFragment.
+         * @param loggedUser Parameter 1.
+         * @return A new instance of fragment ProfileFragment.
          */
-        // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: String, param2: String): CreateProductFragment {
+        fun newInstance(loggedUser: User): CreateProductFragment {
             val fragment = CreateProductFragment()
             val args = Bundle()
-            args.putString(ARG_PARAM1, param1)
-            args.putString(ARG_PARAM2, param2)
+            args.putParcelable("loggedUser", loggedUser)
             fragment.arguments = args
             return fragment
         }
     }
-}// Required empty public constructor
+}

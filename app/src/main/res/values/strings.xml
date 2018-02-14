@@ -19,4 +19,10 @@
     <string name="account_type_1">Ahorros</string>
     <string name="account_type_2">Corriente</string>
     <string name="net_balance_hint">Balance neto</string>
+    <string name="create_movement_title">Registrar un movimiento</string>
+    <string name="movement_type_1">Consignacion</string>
+    <string name="movement_type_2">Retiro</string>
+    <string name="movement_value_hint">Valor</string>
+    <string name="movement_destination_hint">Cuena destino</string>
+    <string name="movement_type">Tipo de movimiento</string>
 </resources>

@@ -15,7 +15,7 @@ import co.edu.usbcali.simulador.database.user.UserDao;
 /**
  * Created by Sebastian on 30/01/2018.
  */
-@Database(entities = {User.class, Account.class, Movement.class}, version = 2)
+@Database(entities = {User.class, Account.class, Movement.class}, version = 5)
 public abstract class AppDatabase extends RoomDatabase{
     public abstract UserDao userDao();
     public abstract AccountDao accountDao();

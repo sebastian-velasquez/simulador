@@ -23,6 +23,12 @@ public interface MovementDao {
     @Query("SELECT * FROM movement WHERE id IN (:ids)")
     List<Movement> getAllByIds(int[] ids);
 
+    @Query("SELECT * FROM movement WHERE destination IN (:destination)")
+    List<Movement> getAllByAccountId(int destination);
+
+    @Query("SELECT * FROM movement WHERE user_id IN (:user_id) ORDER BY id DESC")
+    List<Movement> getAllByUserId(int user_id);
+
     @Query("SELECT COUNT(*) from movement")
     int count();
 

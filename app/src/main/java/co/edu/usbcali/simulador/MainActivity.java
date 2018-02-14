@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import co.edu.usbcali.simulador.database.user.User;
+import co.edu.usbcali.simulador.movements.TransfersFragment;
 import co.edu.usbcali.simulador.products.ProductsFragment;
 import co.edu.usbcali.simulador.profile.ProfileFragment;
 
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                             transaction.replace(R.id.fragmentContainer, productsFragment).commit();
                             return true;
                         case R.id.transfers_menu_item:
-                            transfersFragment = new TransfersFragment();
+                            transfersFragment = TransfersFragment.Companion.newInstance(loggedUser);
                             transaction.replace(R.id.fragmentContainer, transfersFragment).commit();
                             return true;
                         case R.id.profile_menu_item:

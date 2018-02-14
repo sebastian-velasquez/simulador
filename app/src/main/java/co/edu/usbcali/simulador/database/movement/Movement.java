@@ -16,14 +16,24 @@ import co.edu.usbcali.simulador.database.user.User;
 @Entity(
         indices = {
                 @Index("user_id"),
-                @Index("account_id")
+                @Index("destination")
         },
         foreignKeys = {
                 @ForeignKey(entity = User.class, parentColumns = "id", childColumns = "user_id"),
-                @ForeignKey(entity = Account.class, parentColumns = "id", childColumns = "account_id")
+                @ForeignKey(entity = Account.class, parentColumns = "id", childColumns = "destination")
         }
 )
 public class Movement {
+
+    public Movement() {}
+
+    public Movement(int id, int userId, int destination, double value, int type) {
+        this.id = id;
+        this.userId = userId;
+        this.destination = destination;
+        this.value = value;
+        this.type = type;
+    }
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -31,14 +41,8 @@ public class Movement {
     @ColumnInfo(name = "user_id")
     private int userId;
 
-    @ColumnInfo(name = "account_id")
-    private int accountId;
-
-    @ColumnInfo(name = "from")
-    private String from;
-
-    @ColumnInfo(name = "to")
-    private String to;
+    @ColumnInfo(name = "destination")
+    private int destination;
 
     @ColumnInfo(name = "type")
     private int type;
@@ -62,28 +66,12 @@ public class Movement {
         this.userId = userId;
     }
 
-    public int getAccountId() {
-        return accountId;
+    public int getDestination() {
+        return destination;
     }
 
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
-    }
-
-    public String getFrom() {
-        return from;
-    }
-
-    public void setFrom(String from) {
-        this.from = from;
-    }
-
-    public String getTo() {
-        return to;
-    }
-
-    public void setTo(String to) {
-        this.to = to;
+    public void setDestination(int destination) {
+        this.destination = destination;
     }
 
     public int getType() {

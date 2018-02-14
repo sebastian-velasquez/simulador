@@ -1,4 +1,4 @@
-package co.edu.usbcali.simulador.products
+package co.edu.usbcali.simulador.movements
 
 import android.content.Context
 import android.net.Uri
@@ -9,31 +9,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-
 import co.edu.usbcali.simulador.R
 import co.edu.usbcali.simulador.database.AppDatabase
-import co.edu.usbcali.simulador.database.account.Account
+import co.edu.usbcali.simulador.database.movement.Movement
 import co.edu.usbcali.simulador.database.user.User
 
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [ProductsFragment.OnFragmentInteractionListener] interface
+ * [TransfersFragment.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [ProductsFragment.newInstance] factory method to
+ * Use the [TransfersFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ProductsFragment : Fragment(), AdapterView.OnItemClickListener {
-
+class TransfersFragment : Fragment(), AdapterView.OnItemClickListener {
 
     private var DB: AppDatabase? = null
     private var loggedUser: User? = null
 
     private var listView: ListView? = null
-    private var listItems: List<Account>? = null
-    private var fab: FloatingActionButton? = null
+    private var listItems: List<Movement>? = null
 
     private var mListener: OnFragmentInteractionListener? = null
+    private var fab: FloatingActionButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,13 +44,13 @@ class ProductsFragment : Fragment(), AdapterView.OnItemClickListener {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_products, container, false)
+        return inflater!!.inflate(R.layout.fragment_transfers, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val accountDao = DB!!.accountDao()
-        this.listItems = accountDao.getAllByUserId(loggedUser!!.id)
+        val movementDao = DB!!.movementDao()
+        this.listItems = movementDao.getAllByUserId(loggedUser!!.id)
         val arrayAdapter = AccountAdapter()
         this.listView = view!!.findViewById<ListView>(R.id.listViewMovements)
         this.listView!!.adapter = arrayAdapter
@@ -62,7 +60,7 @@ class ProductsFragment : Fragment(), AdapterView.OnItemClickListener {
             if (loggedUser != null){
                 val bundle = Bundle()
                 bundle.putParcelable("loggedUser", loggedUser)
-                val createProductFragment = CreateProductFragment.Companion.newInstance(loggedUser!!)
+                val createProductFragment = CreateMovementFragment.Companion.newInstance(loggedUser!!)
                 val fragmentManager = activity.supportFragmentManager
                 val transaction = fragmentManager.beginTransaction()
                 transaction.replace(R.id.fragmentContainer, createProductFragment)
@@ -124,8 +122,8 @@ class ProductsFragment : Fragment(), AdapterView.OnItemClickListener {
          * @return A new instance of fragment ProfileFragment.
          */
         // TODO: Rename and change types and number of parameters
-        fun newInstance(loggedUser: User): ProductsFragment {
-            val fragment = ProductsFragment()
+        fun newInstance(loggedUser: User): TransfersFragment {
+            val fragment = TransfersFragment()
             val args = Bundle()
             args.putParcelable("loggedUser", loggedUser)
             fragment.arguments = args
@@ -133,19 +131,20 @@ class ProductsFragment : Fragment(), AdapterView.OnItemClickListener {
         }
     }
 
-    inner class AccountAdapter : ArrayAdapter<Account>(this.context,
+    inner class AccountAdapter : ArrayAdapter<Movement>(this.context,
             android.R.layout.simple_expandable_list_item_2, android.R.id.text1, listItems) {
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
             val view = super.getView(position, convertView, parent)
             val tv1 = view!!.findViewById<TextView>(android.R.id.text1)
             val tv2 = view!!.findViewById<TextView>(android.R.id.text2)
-            val account = getItem(position)
-            val accountType = if (account.type == 1) "Ahorros" else "Corriente"
-            tv1.text = "Cuenta " + accountType + " #" + account.id.toString()
-            tv2.text = "Saldo neto: $" + account.netBalance.toString()
+            val movement = getItem(position)
+            val movementType1 = context.resources.getString(R.string.movement_type_1)
+            val movementType2 = context.resources.getString(R.string.movement_type_2)
+            val movementType = if (movement.type == 1) movementType1 else movementType2
+            tv1.text = "Movimiento #" + movement.id.toString() + " - " + movementType
+            tv2.text = "Valor: $" + movement.value.toString()
             return view
         }
     }
 }
-

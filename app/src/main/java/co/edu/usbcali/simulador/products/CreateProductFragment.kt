@@ -68,7 +68,6 @@ class CreateProductFragment : Fragment() {
             Toast.makeText(context, "Cuenta creada correctamente", Toast.LENGTH_SHORT).show()
             fragmentManager.popBackStackImmediate()
         })
-
     }
 
     // TODO: Rename method, update argument and hook method into UI event

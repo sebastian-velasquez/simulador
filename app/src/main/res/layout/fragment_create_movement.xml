@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="co.edu.usbcali.simulador.products.CreateProductFragment">
+    tools:context="co.edu.usbcali.simulador.movements.CreateMovementFragment">
 
     <TextView
         android:id="@+id/textViewTitle"
@@ -14,15 +14,14 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="76dp"
         android:fontFamily="sans-serif"
-        android:text="@string/create_account_title"
+        android:text="@string/create_movement_title"
         android:textAlignment="textStart"
         android:textColor="@color/colorAccentSecondary"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayoutDestination"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayoutValue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.069" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayoutDestination"
@@ -37,11 +36,36 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <EditText
-            android:id="@+id/editTextNetBalance"
+            android:id="@+id/editTextDestination"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorAccent"
-            android:hint="@string/net_balance_hint"
+            android:hint="@string/movement_destination_hint"
+            android:inputType="numberDecimal"
+            android:textColor="@color/colorAccent"
+            android:textColorHighlight="@color/colorAccent"
+            android:textCursorDrawable="@drawable/accent_cursor" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayoutValue"
+        android:layout_width="300dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:theme="@style/AccentTextInput"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayoutDestination"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <EditText
+            android:id="@+id/editTextValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorAccent"
+            android:hint="@string/movement_value_hint"
             android:inputType="numberDecimal"
             android:textColor="@color/colorAccent"
             android:textColorHighlight="@color/colorAccent"
@@ -57,7 +81,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/buttonCreateProduct"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCreateMovement"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -66,26 +90,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/account_type" />
+            android:text="@string/movement_type" />
 
         <RadioButton
-            android:id="@+id/radioButtonAccountType1"
+            android:id="@+id/radioButtonMovementType1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checked="true"
-            android:text="@string/account_type_1" />
+            android:text="@string/movement_type_1" />
 
         <RadioButton
-            android:id="@+id/radioButtonAccountType2"
+            android:id="@+id/radioButtonMovementType2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/account_type_2" />
+            android:text="@string/movement_type_2" />
     </RadioGroup>
 
     <Button
-        android:id="@+id/buttonCreateProduct"
+        android:id="@+id/buttonCreateMovement"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
